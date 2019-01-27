@@ -1,4 +1,4 @@
-package com.example.sydneycorbett.mathgame1;
+package com.essdev.russ.mathgame;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
