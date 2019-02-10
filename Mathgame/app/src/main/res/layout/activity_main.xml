@@ -10,9 +10,12 @@
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#c9c9f1"
         android:layout_margin="50dp"
         android:padding="5dp"
+        android:background="@null"
+        android:gravity="center_horizontal"
+        android:textSize="35sp"
+        android:cursorVisible="false"
         android:layout_alignParentTop="true"/>
 
     <com.essdev.russ.mathgame.GameKeyboard

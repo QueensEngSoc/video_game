@@ -97,6 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#fdfd96"
             android:text="Delete"/>
 
         <Button
@@ -107,11 +108,13 @@
             android:text="0"/>
 
         <Button
-            android:id="@+id/button_enter"
+            android:id="@+id/button_clear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Enter"/>
+            android:backgroundTint="#FF6961"
+            android:textColor="#f4f1d6"
+            android:text="Clear"/>
 
     </LinearLayout>
 </LinearLayout>

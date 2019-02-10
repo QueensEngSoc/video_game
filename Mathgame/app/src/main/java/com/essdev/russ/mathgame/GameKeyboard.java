@@ -39,7 +39,7 @@ public class GameKeyboard extends LinearLayout implements View.OnClickListener {
     private Button mButton9;
     private Button mButton0;
     private Button mButtonDelete;
-    private Button mButtonEnter;
+    private Button mButtonClear;
 
     // This will map the button resource id to the String value that we want to
     // input when that button is clicked.
@@ -63,7 +63,7 @@ public class GameKeyboard extends LinearLayout implements View.OnClickListener {
         mButton9 = (Button) findViewById(R.id.button_9);
         mButton0 = (Button) findViewById(R.id.button_0);
         mButtonDelete = (Button) findViewById(R.id.button_delete);
-        mButtonEnter = (Button) findViewById(R.id.button_enter);
+        mButtonClear = (Button) findViewById(R.id.button_clear);
 
         // set button click listeners
         mButton1.setOnClickListener(this);
@@ -77,7 +77,7 @@ public class GameKeyboard extends LinearLayout implements View.OnClickListener {
         mButton9.setOnClickListener(this);
         mButton0.setOnClickListener(this);
         mButtonDelete.setOnClickListener(this);
-        mButtonEnter.setOnClickListener(this);
+        mButtonClear.setOnClickListener(this);
 
         // map buttons IDs to input strings
         keyValues.put(R.id.button_1, "1");
@@ -90,7 +90,6 @@ public class GameKeyboard extends LinearLayout implements View.OnClickListener {
         keyValues.put(R.id.button_8, "8");
         keyValues.put(R.id.button_9, "9");
         keyValues.put(R.id.button_0, "0");
-        keyValues.put(R.id.button_enter, "\n");
     }
 
     @Override
@@ -110,9 +109,13 @@ public class GameKeyboard extends LinearLayout implements View.OnClickListener {
                 // delete the selection
                 inputConnection.commitText("", 1);
             }
+        }
+        else if (v.getId() == R.id.button_clear) {
+            inputConnection.deleteSurroundingText(100, 0);
         } else {
             String value = keyValues.get(v.getId());
             inputConnection.commitText(value, 1);
+//            inputConnection
         }
     }
 
