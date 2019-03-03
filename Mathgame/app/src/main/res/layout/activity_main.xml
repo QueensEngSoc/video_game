@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.essdev.russ.mathgame.MainActivity">
 
+    <com.essdev.russ.mathgame.GameView
+        android:id="@+id/keyboard"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        />
+
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"

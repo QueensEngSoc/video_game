@@ -17,8 +17,9 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-       // setContentView(new GameView(this));
         setContentView(R.layout.activity_main);
+
+//        GameView game = (GameView)
 
         EditText editText = (EditText) findViewById(R.id.editText);
         GameKeyboard keyboard = (GameKeyboard) findViewById(R.id.keyboard);
