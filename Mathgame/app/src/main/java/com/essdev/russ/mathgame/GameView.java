@@ -8,6 +8,10 @@ import android.view.SurfaceHolder;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.EditText;
+import android.graphics.Paint;
+import android.graphics.Color;
+
+
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public MainThread thread;
@@ -19,16 +23,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
 
 
-        EditText editText = (EditText) findViewById(R.id.editText);
+     /*   EditText editText = (EditText) findViewById(R.id.editText);
         GameKeyboard keyboard = (GameKeyboard) findViewById(R.id.keyboard);
 
         // prevent system keyboard from appearing when EditText is tapped
         editText.setRawInputType(InputType.TYPE_CLASS_TEXT);
         editText.setTextIsSelectable(true);
 
+
         // pass the InputConnection from the EditText to the keyboard
         InputConnection ic = editText.onCreateInputConnection(new EditorInfo());
-        keyboard.setInputConnection(ic);
+        keyboard.setInputConnection(ic);*/
 
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
@@ -64,8 +69,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
+
     @Override
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
         super.draw(canvas);
+        if (canvas != null) {
+            canvas.drawColor(Color.WHITE);
+            Paint paint = new Paint();
+            paint.setColor(Color.rgb(250, 0, 0));
+            canvas.drawRect(100, 100, 200, 200, paint);
+        }
     }
 }
