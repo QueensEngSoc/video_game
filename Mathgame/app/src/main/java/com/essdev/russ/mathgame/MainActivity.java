@@ -17,20 +17,20 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //setContentView(R.layout.activity_main);
-        setContentView(new GameView(this));
+        setContentView(R.layout.activity_main);
+//        setContentView(new GameView(this));
 
-//        GameView game = (GameView)
+        GameView game = (GameView) findViewById(R.id.gameView);
 
-        //EditText editText = (EditText) findViewById(R.id.editText);
-        //GameKeyboard keyboard = (GameKeyboard) findViewById(R.id.keyboard);
+        EditText editText = (EditText) findViewById(R.id.editText);
+        GameKeyboard keyboard = (GameKeyboard) findViewById(R.id.keyboard);
 
         // prevent system keyboard from appearing when EditText is tapped
-        //editText.setRawInputType(InputType.TYPE_CLASS_TEXT);
-        //editText.setTextIsSelectable(true);
+        editText.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        editText.setTextIsSelectable(true);
 
         // pass the InputConnection from the EditText to the keyboard
-        //InputConnection ic = editText.onCreateInputConnection(new EditorInfo());
-        //keyboard.setInputConnection(ic);
+        InputConnection ic = editText.onCreateInputConnection(new EditorInfo());
+        keyboard.setInputConnection(ic);
     }
 }
