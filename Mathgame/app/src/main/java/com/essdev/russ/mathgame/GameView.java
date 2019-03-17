@@ -1,5 +1,7 @@
 package com.essdev.russ.mathgame;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.content.Context;
 import android.text.InputType;
@@ -12,55 +14,33 @@ import android.widget.EditText;
 import android.graphics.Paint;
 import android.graphics.Color;
 
-
-
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public MainThread thread;
+    private AsteroidSprite asteroidSprite;
+    private EarthSprite bgSprite;
+    private Bitmap bg = BitmapFactory.decodeResource(getResources(),R.drawable.earth);
+    private int y_loc, numOne, numTwo;
+    private Paint paint = new Paint();
 
     public GameView(Context context) {
-
         super(context);
-
         getHolder().addCallback(this);
-
-
-     /*   EditText editText = (EditText) findViewById(R.id.editText);
-        GameKeyboard keyboard = (GameKeyboard) findViewById(R.id.keyboard);
-
-        // prevent system keyboard from appearing when EditText is tapped
-        editText.setRawInputType(InputType.TYPE_CLASS_TEXT);
-        editText.setTextIsSelectable(true);
-
-
-        // pass the InputConnection from the EditText to the keyboard
-        InputConnection ic = editText.onCreateInputConnection(new EditorInfo());
-        keyboard.setInputConnection(ic);*/
-
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
+        y_loc = 0;
+        paint.setColor(Color.WHITE);
+        paint.setStyle(Paint.Style.FILL);
     }
 
     public GameView(Context context, AttributeSet attributeSet) {
-
         super(context);
-
         getHolder().addCallback(this);
-
-
-     /*   EditText editText = (EditText) findViewById(R.id.editText);
-        GameKeyboard keyboard = (GameKeyboard) findViewById(R.id.keyboard);
-
-        // prevent system keyboard from appearing when EditText is tapped
-        editText.setRawInputType(InputType.TYPE_CLASS_TEXT);
-        editText.setTextIsSelectable(true);
-
-
-        // pass the InputConnection from the EditText to the keyboard
-        InputConnection ic = editText.onCreateInputConnection(new EditorInfo());
-        keyboard.setInputConnection(ic);*/
-
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
+        y_loc = 0;
+        paint.setColor(Color.WHITE);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextSize(60);
     }
 
     @Override
@@ -72,7 +52,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder holder){
         thread.setRunning(true);
         thread.start();
-
+        bgSprite = new EarthSprite(this, bg);
+        asteroidSprite = new AsteroidSprite(this, BitmapFactory.decodeResource(getResources(),R.drawable.fire));
+        numOne = (int)(Math.random()*12) + 1;
+        numTwo = (int)(Math.random()*12) + 1;
     }
 
     @Override
@@ -90,18 +73,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update(){
-
+        y_loc++;
     }
 
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        if (canvas != null) {
-            canvas.drawColor(Color.WHITE);
-            Paint paint = new Paint();
-            paint.setColor(Color.rgb(250, 0, 0));
-            canvas.drawRect(100, 100, 200, 200, paint);
-        }
+        canvas.drawColor(Color.rgb(55,0,111));
+       // bgSprite.draw(canvas);
+        canvas.drawText(numOne + " * " + numTwo, 500, y_loc, paint);
+        asteroidSprite.draw(canvas);
     }
 }
