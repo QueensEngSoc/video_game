@@ -4,32 +4,25 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.content.Context;
-import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
 import android.widget.EditText;
-import android.graphics.Paint;
 import android.graphics.Color;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public MainThread thread;
-    private AsteroidSprite asteroidSprite;
+    private AsteroidSprite asteroidOne, asteroidTwo;
     private EarthSprite bgSprite;
     private Bitmap bg = BitmapFactory.decodeResource(getResources(),R.drawable.earth);
-    private int y_loc, numOne, numTwo;
-    private Paint paint = new Paint();
+    private int count;
+    private EditText editText;
 
     public GameView(Context context) {
         super(context);
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
-        y_loc = 0;
-        paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.FILL);
     }
 
     public GameView(Context context, AttributeSet attributeSet) {
@@ -37,10 +30,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
-        y_loc = 0;
-        paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(60);
     }
 
     @Override
@@ -53,9 +42,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         thread.setRunning(true);
         thread.start();
         bgSprite = new EarthSprite(this, bg);
-        asteroidSprite = new AsteroidSprite(this, BitmapFactory.decodeResource(getResources(),R.drawable.fire));
-        numOne = (int)(Math.random()*12) + 1;
-        numTwo = (int)(Math.random()*12) + 1;
+        asteroidOne = new AsteroidSprite(this, BitmapFactory.decodeResource(getResources(),R.drawable.fire));
     }
 
     @Override
@@ -73,16 +60,24 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update(){
-        y_loc++;
+        count++;
+        if ( count == 300 ) {
+            asteroidTwo = new AsteroidSprite(this, BitmapFactory.decodeResource(getResources(),R.drawable.fire));
+        }
+//        if (Integer.parseInt(editText.getText().toString()) == asteroidOne.soln) asteroidOne.explode();
+//        if (Integer.parseInt(editText.getText().toString()) == asteroidTwo.soln) asteroidTwo.explode();
     }
-
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
         canvas.drawColor(Color.rgb(55,0,111));
-       // bgSprite.draw(canvas);
-        canvas.drawText(numOne + " * " + numTwo, 500, y_loc, paint);
-        asteroidSprite.draw(canvas);
+        bgSprite.draw(canvas);
+        if (asteroidOne.getSpawn() == 1) asteroidOne.draw(canvas);
+        if (asteroidTwo.getSpawn() == 1) asteroidTwo.draw(canvas);
+    }
+
+    public void setEditText(EditText edit) {
+        this.editText = edit;
     }
 }

@@ -21,7 +21,7 @@
         android:background="@null"
         android:gravity="center_horizontal"
         android:textSize="35sp"
-        android:textColor="@color/colorAccent"
+        android:textColor="#fff"
         android:cursorVisible="false"
         android:layout_alignParentTop="true"/>
 

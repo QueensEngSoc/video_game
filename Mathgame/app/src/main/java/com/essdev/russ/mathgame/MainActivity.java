@@ -31,5 +31,7 @@ public class MainActivity extends Activity {
         // pass the InputConnection from the EditText to the keyboard
         InputConnection ic = editText.onCreateInputConnection(new EditorInfo());
         keyboard.setInputConnection(ic);
+
+//        game.setEditText(editText);
     }
 }
