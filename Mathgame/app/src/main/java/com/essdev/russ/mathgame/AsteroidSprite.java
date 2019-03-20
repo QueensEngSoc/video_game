@@ -22,7 +22,7 @@ public class AsteroidSprite {
         paint.setStyle(Paint.Style.FILL);
         paint.setTextSize(60);
         x = (int)(Math.random()*1000) + 1;
-        y = 0;
+        y = -100;
         spawn = 1;
         soln = eqn.numOne * eqn.numTwo;
     }
@@ -30,12 +30,13 @@ public class AsteroidSprite {
     public void draw(Canvas canvas) {
         update();
         canvas.drawBitmap(image, x, y,null);
-        canvas.drawText(eqn.numOne + " * " + eqn.numTwo, x, y-100, paint);
+        canvas.drawText(eqn.numOne + " * " + eqn.numTwo, x, y-50, paint);
     }
     public void update() {
         y+=2;
-        if (x<500) x++;
-        if (x>520) x--;
+        if (x<502) x++;
+        if (x>504) x--;
+        if (y>= 900) spawn = 0;
     }
 
     public int getSpawn() {

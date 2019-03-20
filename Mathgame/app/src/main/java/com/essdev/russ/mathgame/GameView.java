@@ -12,7 +12,7 @@ import android.graphics.Color;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public MainThread thread;
-    private AsteroidSprite asteroidOne, asteroidTwo;
+    private AsteroidSprite asteroidOne, asteroidTwo, asteroidThree, asteroidFour;
     private EarthSprite bgSprite;
     private Bitmap bg = BitmapFactory.decodeResource(getResources(),R.drawable.earth);
     private int count;
@@ -42,7 +42,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         thread.setRunning(true);
         thread.start();
         bgSprite = new EarthSprite(this, bg);
-        asteroidOne = new AsteroidSprite(this, BitmapFactory.decodeResource(getResources(),R.drawable.fire));
     }
 
     @Override
@@ -60,12 +59,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update(){
-        count++;
-        if ( count == 300 ) {
+        if ( count == 0 ) {
+            asteroidOne = new AsteroidSprite(this, BitmapFactory.decodeResource(getResources(),R.drawable.fire));
+        }
+        if ( count == 200 ) {
             asteroidTwo = new AsteroidSprite(this, BitmapFactory.decodeResource(getResources(),R.drawable.fire));
+        }
+        if ( count == 400 ) {
+            asteroidThree = new AsteroidSprite(this, BitmapFactory.decodeResource(getResources(),R.drawable.fire));
+        }
+        if ( count == 600 ) {
+            asteroidFour = new AsteroidSprite(this, BitmapFactory.decodeResource(getResources(),R.drawable.fire));
         }
 //        if (Integer.parseInt(editText.getText().toString()) == asteroidOne.soln) asteroidOne.explode();
 //        if (Integer.parseInt(editText.getText().toString()) == asteroidTwo.soln) asteroidTwo.explode();
+        count++;
+        count%=800;
     }
 
     @Override
@@ -75,6 +84,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         bgSprite.draw(canvas);
         if (asteroidOne.getSpawn() == 1) asteroidOne.draw(canvas);
         if (asteroidTwo.getSpawn() == 1) asteroidTwo.draw(canvas);
+        if (asteroidThree.getSpawn() == 1) asteroidThree.draw(canvas);
+        if (asteroidFour.getSpawn() == 1) asteroidFour.draw(canvas);
     }
 
     public void setEditText(EditText edit) {
