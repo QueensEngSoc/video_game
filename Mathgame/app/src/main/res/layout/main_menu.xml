@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#9400D3">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -12,7 +13,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:text="Math Game"/>
+            android:textColor="#f4f1d6"
+            android:textSize="50dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="    Math Game"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +26,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Play"/>
+            android:backgroundTint="#9ACD32"
+            android:textColor="#f4f1d6"
+            android:text="Play" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +38,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="About"/>
+            android:backgroundTint="#20B2AA"
+            android:textColor="#f4f1d6"
+            android:text="About" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,6 +50,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Statistics"/>
+            android:backgroundTint="#6495ED"
+            android:textColor="#f4f1d6"
+            android:text="Statistics" />
     </LinearLayout>
 </LinearLayout>
