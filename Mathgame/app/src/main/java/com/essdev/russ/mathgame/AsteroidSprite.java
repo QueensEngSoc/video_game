@@ -10,7 +10,7 @@ public class AsteroidSprite {
     private GameView gameView;
     private Paint paint = new Paint();
     private Equation eqn;
-    public int soln;
+    public String soln;
     private int x,y;
     private int spawn;
 
@@ -24,7 +24,7 @@ public class AsteroidSprite {
         x = (int)(Math.random()*1000) + 1;
         y = -100;
         spawn = 1;
-        soln = eqn.numOne * eqn.numTwo;
+        soln = ""+ (eqn.numOne * eqn.numTwo);
     }
 
     public void draw(Canvas canvas) {
@@ -41,6 +41,10 @@ public class AsteroidSprite {
 
     public int getSpawn() {
         return spawn;
+    }
+
+    public void setNumOne(int num) {
+        eqn.numOne = num;
     }
 
     public void explode() {

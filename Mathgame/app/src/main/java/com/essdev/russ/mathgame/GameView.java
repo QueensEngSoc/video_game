@@ -15,7 +15,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private AsteroidSprite asteroidOne, asteroidTwo, asteroidThree, asteroidFour;
     private EarthSprite bgSprite;
     private Bitmap bg = BitmapFactory.decodeResource(getResources(),R.drawable.earth);
-    private int count;
+    private int count, score;
     private EditText editText;
 
     public GameView(Context context) {
@@ -30,6 +30,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
+        score = 0;
     }
 
     @Override
@@ -71,8 +72,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if ( count == 600 ) {
             asteroidFour = new AsteroidSprite(this, BitmapFactory.decodeResource(getResources(),R.drawable.fire));
         }
-//        if (Integer.parseInt(editText.getText().toString()) == asteroidOne.soln) asteroidOne.explode();
-//        if (Integer.parseInt(editText.getText().toString()) == asteroidTwo.soln) asteroidTwo.explode();
+//        checkAnswer(editText.getText().toString());
         count++;
         count%=800;
     }
@@ -90,5 +90,21 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void setEditText(EditText edit) {
         this.editText = edit;
+    }
+
+    public void checkAnswer (String ans) {
+        if (ans.equals(asteroidOne.soln)) {
+            asteroidOne.explode();
+            score+=100;
+        }
+        if (ans.equals(asteroidTwo.soln)) {
+            asteroidTwo.explode();
+        }
+        if (ans.equals(asteroidThree.soln)) {
+            asteroidThree.explode();
+        }
+        if (ans.equals(asteroidFour.soln)) {
+            asteroidFour.explode();
+        }
     }
 }

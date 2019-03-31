@@ -3,17 +3,16 @@ package com.essdev.russ.mathgame;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.MenuInflater;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
+import android.widget.Button;
 import android.widget.EditText;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.content.Intent;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +20,32 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.menu.main_menu);
+        setContentView(R.layout.main_menu);
+
+        Button play = findViewById(R.id.play);
+        Button about = findViewById(R.id.about);
+        Button stats = findViewById(R.id.stats);
+
+        play.setOnClickListener(this);
+        about.setOnClickListener(this);
+        stats.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.play) {
+            onPlay();
+        }
+        else if (v.getId() == R.id.about) {
+            // show about page
+        }
+        else if (v.getId() == R.id.stats) {
+            // show statistics
+        }
+    }
+
+    protected void onPlay() {
+        setContentView(R.layout.activity_main);
 
 
         GameView game = (GameView) findViewById(R.id.gameView);
@@ -39,33 +63,4 @@ public class MainActivity extends Activity {
 
 //        game.setEditText(editText);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu (Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.stats:
-                Intent intent1 = new Intent(this, Statistics.class);
-                this.startActivity(intent1);
-                return true;
-            case R.id.about:
-                Intent intent2 = new Intent(this, About.class);
-                this.startActivity(intent2);
-                return true;
-            case R.id.play:
-                Intent intent3 = new Intent(this, GameView.class);
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
-
 }
