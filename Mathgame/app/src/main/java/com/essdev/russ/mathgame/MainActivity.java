@@ -61,7 +61,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // pass the InputConnection from the EditText to the keyboard
         InputConnection ic = editText.onCreateInputConnection(new EditorInfo());
         keyboard.setInputConnection(ic);
-
-//        game.setEditText(editText);
     }
 }

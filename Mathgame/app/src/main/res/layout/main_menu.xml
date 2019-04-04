@@ -12,11 +12,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="50dp"
             android:textColor="#f4f1d6"
             android:textSize="50dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="    Math Game"/>
+            android:text="Math Attack"/>
 
 
     </LinearLayout>
@@ -28,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="80dp"
             android:backgroundTint="#9ACD32"
             android:textColor="#f4f1d6"
             android:text="Play" />
